@@ -4,16 +4,15 @@ import cv2
 import time
 import numpy as np
 
-PATH = "../assets"
+PATH = join('..', 'assets')
 FADE_TIME = 0.07
 CV2_SHOW_NAME = 'image'
 
 def main():
     imgs = loadImages()
     imgs = applyBorder(imgs)
-    waterMark = cv2.imread('../spacex.png', cv2.IMREAD_UNCHANGED)
+    waterMark = cv2.imread(join('..', 'linkedin.jpg'))
     waterMark = cv2.resize(waterMark, (50, 50))
-    print(waterMark.shape)
     untilIndex = len(imgs) - 1
     i = -1
     while True:
@@ -45,13 +44,7 @@ def applyBorder(imgs):
     
 
 def loadImages():
-    imgs = [cv2.imread(join(PATH,f), cv2.IMREAD_UNCHANGED) for f in listdir(PATH) if isfile(join(PATH,f))]
-    for i in range(len(imgs)):
-        img = imgs[i]
-        b_channel, g_channel, r_channel = cv2.split(img)
-        alpha_channel = np.ones(b_channel.shape, dtype=b_channel.dtype) * 50 
-        imgs[i] = cv2.merge((b_channel, g_channel, r_channel, alpha_channel))
-    return imgs
+    return [cv2.imread(join(PATH,f)) for f in listdir(PATH) if isfile(join(PATH,f))]
 
 
 if __name__ == '__main__':
