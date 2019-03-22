@@ -4,14 +4,14 @@ import cv2
 import time
 import numpy as np
 
-PATH = "../assets"
+PATH = join('..', 'assets')
 FADE_TIME = 0.07
 CV2_SHOW_NAME = 'image'
 
 def main():
     imgs = loadImages()
     imgs = applyBorder(imgs)
-    waterMark = cv2.imread('../linkedin.jpg')
+    waterMark = cv2.imread(join('..', 'linkedin.jpg'))
     waterMark = cv2.resize(waterMark, (50, 50))
     untilIndex = len(imgs) - 1
     i = -1
